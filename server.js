@@ -13,6 +13,7 @@ app.use(express.json());
 //routes
 readdirSync("./routes").map((r) => app.use("/", require("./routes/" + r)));
 
+app.use(express.static(__dirname + '/'));
 
 //database
 mongoose
@@ -23,6 +24,6 @@ mongoose
   .catch((err) => console.log("error connecting to mongodb", err));
 
 let PORT = process.env.PORT || 8000;
-app.listen(PORT, () => {
+app.listen(process.env.PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
